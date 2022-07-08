@@ -11,6 +11,9 @@
 ;; Have query buffers open automatically when someone sends a private message.
 (setq erc-auto-query 'buffer)
 
+;; Tell ERC where to save log files.
+(setq erc-log-channels-directory "~/.erc/logs/")
+
 (defun setup-localproxy()
   "Setup Emacs for using local SOCKS proxy for ERC"
   (interactive)
@@ -50,8 +53,7 @@
 ;; Joining && autojoing.
 (erc-autojoin-mode t)
 (setq erc-autojoin-channels-alist
-      '((".*\\.mozilla.org" "#media" "#developers" "#content")
-	(".*\\.freenode.net" "#webrtc")))
+      '((".*\\.freenode.net" "#webrtc")))
 
 (defun erc-start-or-switch ()
   "Connect to ERC, or switch to last active buffer"
@@ -59,7 +61,6 @@
   (if (get-buffer "irc.freenode.net") ;; ERC already active?
       (erc-track-switch-buffer 1) ;; yes: switch to last active
     (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
-      (erc :server "irc.mozilla.org" :port 6667 :nick "jaoo")
       (erc :server "irc.freenode.net" :port 6667 :nick "jaoo"))))
 
 ;; Switch to ERC with Ctrl+c e.

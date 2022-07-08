@@ -18,6 +18,7 @@
 (require 'init-ido)
 (require 'init-fill-column-indicator)
 (require 'init-javascript)
+(require 'init-typescript)
 
 (require 'init-markdown)
 
